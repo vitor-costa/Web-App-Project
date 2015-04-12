@@ -1,0 +1,16 @@
+{
+  "version": "0.1",
+  "name": "Open Web App Project",
+  "description": "Steganography app",
+  "launch_path": "index.html",
+  "developers": {
+    "developer1": {
+      "name": "Vitor Costa",
+      "url": ""
+    },
+    "developer2": {
+      "name": "Danilo Vettorazi",
+      "url": ""
+    }
+  }
+}
