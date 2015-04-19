@@ -1,16 +1,27 @@
+var canvas;
 function hideMessage()
 {
 	var password = $('#password-space')[0].value;
-
 	var text = $('#text-space')[0].value;
-	var binaryText = convert_text_to_binary(text);	
-	var metadata = prepare_metadata(binaryText, "txt");
+	canvas = $("#canvas1")[0];
+	var context = canvas.getContext("2d");
+	readImage($("#fileUpload")[0], context);
+	var imageData = getImageData(canvas); 
+
+	var binaryText = convertTextToBinary(text);	
+	var metadata = prepareMetadata(binaryText, "txt");
 	var unifiedData = processData(metadata, binaryText);
+	var positions = generateRandomPermutation(unifiedData.length, imageData.width * imageData.height, password);
 
-	window.alert(unifiedData);
+	hideBinaryIntoImage(unifiedData, imageData, positions);
+	setImageData(imageData);
 
-	
+	// saveImageAsPNG(canvas);
+
+
+	// window.open(canvas.toDataURL('image/png'));
 }
+
 function processData(metadata, data)
 {
 	return (metadata + data);
