@@ -16,10 +16,9 @@ function hideMessage()
 	hideBinaryIntoImage(unifiedData, imageData, positions);
 	setImageData(imageData);
 
-	// saveImageAsPNG(canvas);
-
-
-	// window.open(canvas.toDataURL('image/png'));
+	setTimeout(function() {
+		window.open(canvas.toDataURL('image/png'));	
+	}, 1000);
 }
 
 function processData(metadata, data)
