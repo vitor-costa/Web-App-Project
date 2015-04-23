@@ -6,6 +6,18 @@ function convertTextToBinary(text) {
   return binary;
 }
 
+function convertBinaryToText(binary) {
+	var byteNumber = binary.length / 8;
+	var text = "";
+
+	for(var i = 0; i < byteNumber; i++) {
+		var oneByte = binary.substr(i * 8, (i * 8) + 7);
+		text += String.fromCharCode(parseInt(oneByte, 2));
+	}
+
+	return text;
+}
+
 // Return ascii code always with 8 bits
 function byteString(n) {
 	return ("000000000" + n.charCodeAt(0).toString(2)).substr(-8)
@@ -71,6 +83,20 @@ function readImage(element, context) {
   }
 }
 
+function readImageWithoutResize(element, context) {
+  if ( element.files && element.files[0] ) {
+      var FR= new FileReader();
+      FR.onload = function(e) {
+         var img = new Image();
+         img.onload = function() {
+           context.drawImage(img, 0, 0);
+         };
+         img.src = e.target.result;
+      };       
+      FR.readAsDataURL( element.files[0] );
+  }
+}
+
 function generateRandomPermutation(totalNumberOfElements, numberOfPermutations, seed) {
 	var crypto = [];
 	// StringBuilder sb = new StringBuilder();
@@ -105,6 +131,74 @@ function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-function saveImageAsPNG(canvas) {
-	window.open(canvas.toDataURL('image/png'));
+function extractSecretMessage(imageBuffer, positions) {
+	var terminator = "00010100";
+	var width = imageBuffer.width;
+	var heigth = imageBuffer.height;
+	var x, y;
+	var binaryIndex = 0;
+
+	console.log("passou aqui");
+	// extract length
+	var metadata1 = extractNextMetadata(terminator, imageBuffer, positions, binaryIndex);
+	var length = parseInt(metadata1[0]);
+	binaryIndex = metadata1[1];
+	console.log("passou aqui");
+
+	// extract extension
+	var metadata2 = extractNextMetadata(terminator, imageBuffer, positions, binaryIndex);
+	var extension = metadata2[0];
+	binaryIndex = metadata2[1];
+	console.log("passou aqui");
+
+	// extract data binary
+	var dataBinary = "";
+	for(var i = binaryIndex; i < binaryIndex + length; i++) {
+		for(var j = 0; j < 8; j++) {
+			x = positions[i] % width;
+			y = (positions[i] - x) / width;
+
+			var pixel = getPixel(imageBuffer, x, y);
+			var blue = pixel[2];
+			// if value of pixel blue component is even
+			if(blue % 2 == 0) {
+				dataBinary += "0";
+			} else { // if value of pixel blue component is odd
+				dataBinary += "1";
+			}
+		}
+	}
+	console.log("passou aqui");
+
+	return [dataBinary, extension];
+}
+
+function extractNextMetadata(terminator, imageBuffer, positions, binaryIndex) {
+	var metadata = "";
+	var oneByte = "";
+	var i = binaryIndex;
+	while(oneByte != terminator && i<40) {
+		if(oneByte != "") {
+			metadata += String.fromCharCode(parseInt(oneByte, 2));
+			console.log(">>" + metadata);
+		}
+		oneByte = "";
+		for(var j = 0; j < 8; j++) {
+			x = positions[i] % width;
+			y = (positions[i] - x) / width;
+			i++;
+
+			var pixel = getPixel(imageBuffer, x, y);
+			var blue = pixel[2];
+			// if value of pixel blue component is even
+			if(blue % 2 == 0) {
+				oneByte += "0";
+			} else { // if value of pixel blue component is odd
+				oneByte += "1";
+			}
+			console.log("--"+oneByte);
+		}
+	}
+	binaryIndex = i;
+	return [metadata, binaryIndex];
 }

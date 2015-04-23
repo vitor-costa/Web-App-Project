@@ -3,13 +3,23 @@
 <html>
 	<body>
 		<span>Password:</span>
-		<input type="password" id="password-space" name="password" size="8" maxlength="8"/>
+		<input type="password" id="password-space" name="password" size="8" maxlength="20"/>
 		<span>Text:</span>
 		<input type="text" id="text-space" name="text"/>
 		<input type='file' id="fileUpload"/>
 		<button id="conver-btn" onclick="hideMessage()">Hide message</button>
 
 		<canvas id="canvas1" width="200" height="200"></canvas>
+
+		<br>
+
+		<span>Password:</span>
+		<input type="password" id="password-space-2" name="password" size="8" maxlength="20"/>
+		<canvas id="canvas2" width="200" height="200"></canvas>
+		<input type='file' id="file-upload-2"/>
+		<button id="conver-btn" onclick="seekMessage()">Seek message</button>
+
+		<br>
 		<button id="install-btn">Install app</button>
 
 		<script src="js/jquery-1.11.2.min.js"></script>
@@ -17,6 +27,6 @@
 		<script src="js/simple.js"></script>
 		<script src="js/pixel-manipulator.js"></script>
 		<script src="js/steganography.js"></script>
-		<script src="js/hide-message.js"></script>
+		<script src="js/hide-n-seek.js"></script>
 	</body>
 </html>
