@@ -60,3 +60,37 @@ function seekMessage() {
 function processData(metadata, data) {
 	return (metadata + data);
 }
+
+function preTest() {
+	var canvas = $("#canvas1")[0];
+	var context = canvas.getContext("2d");
+	readImage($("#fileUpload")[0], context);
+	setTimeout(test(), 1000);
+}
+
+function test() {
+	var password = 'senha'
+	var text = 'ola mundo'
+	var canvas = $("#canvas1")[0];
+	var context = canvas.getContext("2d");
+	readImage($("#fileUpload")[0], context);
+	var imageData = getImageData("#canvas1"); 
+
+	var binaryText = convertTextToBinary(text);	
+	var metadata = prepareMetadata(binaryText, "txt");
+	var unifiedData = processData(metadata, binaryText);
+	var positions = generateRandomPermutation(unifiedData.length, imageData.width * imageData.height, password);
+	//
+	hideBinaryIntoImage(unifiedData, imageData, positions);
+
+	var pixelNumber = imageData.width * imageData.height;
+	positions = generateRandomPermutation(pixelNumber, pixelNumber, password);
+	var data = extractSecretMessage(imageData, positions);
+	var binary = data[0];
+	var extension = data[1];
+
+	var secretMessage = convertBinaryToText(binary);
+
+	window.alert(secretMessage);
+
+}
