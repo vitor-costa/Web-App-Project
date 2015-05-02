@@ -51,7 +51,6 @@ function hideBinaryIntoImage(binary, imageBuffer, positions) {
 				// change parity
 				blue++;
 				setPixel(imageBuffer, x, y, pixel[0], pixel[1], blue, pixel[3]);
-				console.log('>'+blue+'-'+getPixel(imageBuffer,x,y)[2]+'<');
 			}
 			// else, OK! (don't change parity)
 		} else { // if value of pixel blue component is odd
@@ -65,7 +64,6 @@ function hideBinaryIntoImage(binary, imageBuffer, positions) {
 					blue++;
 				}
 				setPixel(imageBuffer, x, y, pixel[0], pixel[1], blue, pixel[3]);
-				// console.log('>'+blue+'-'+getPixel(imageBuffer,x,y)[2]+'<');
 			}
 			// else, OK!
 		}
@@ -153,23 +151,19 @@ function extractSecretMessage(imageBuffer, positions) {
 	var x, y;
 	var binaryIndex = 0;
 
-	console.log("passou aqui");
 	// extract length
 	var metadata1 = extractNextMetadata(terminator, imageBuffer, positions, binaryIndex);
 	var length = parseInt(metadata1[0]);
 	binaryIndex = metadata1[1];
-	console.log("passou aqui");
 
 	// extract extension
 	var metadata2 = extractNextMetadata(terminator, imageBuffer, positions, binaryIndex);
 	var extension = metadata2[0];
 	binaryIndex = metadata2[1];
-	console.log("passou aqui");
 
 	// extract data binary
 	var dataBinary = "";
 	for(var i = binaryIndex; i < binaryIndex + length; i++) {
-		// for(var j = 0; j < 8; j++) {
 		x = positions[i] % width;
 		y = (positions[i] - x) / width;
 
@@ -181,9 +175,7 @@ function extractSecretMessage(imageBuffer, positions) {
 		} else { // if value of pixel blue component is odd
 			dataBinary += "1";
 		}
-		// }
 	}
-	console.log("passou aqui");
 
 	return [dataBinary, extension];
 }
@@ -192,10 +184,10 @@ function extractNextMetadata(terminator, imageBuffer, positions, binaryIndex) {
 	var metadata = "";
 	var oneByte = "";
 	var i = binaryIndex;
-	while(oneByte != terminator && i<400) {
+	// limiting loop for positions length in case the password is wrong
+	while(oneByte != terminator && i < positions.length) {
 		if(oneByte != "") {
 			metadata += String.fromCharCode(parseInt(oneByte, 2));
-			console.log("metadata>>" + metadata);
 		}
 		oneByte = "";
 		for(var j = 0; j < 8; j++) {
@@ -211,7 +203,6 @@ function extractNextMetadata(terminator, imageBuffer, positions, binaryIndex) {
 			} else { // if value of pixel blue component is odd
 				oneByte += "1";
 			}
-			console.log("--"+oneByte);
 		}
 	}
 	binaryIndex = i;
