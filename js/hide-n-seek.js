@@ -4,14 +4,14 @@ function hideMessage() {
 	var text = $('#text-space')[0].value;
 	var canvas = $("#canvas1")[0];
 	globalCanvas = canvas;
-	var context = canvas.getContext("2d");
-	readImage($("#fileUpload")[0], context);
+	// var context = canvas.getContext("2d");
+	// readImage($("#fileUpload")[0], context);
 	var imageData = getImageData(canvas); 
 
 	var binaryText = convertTextToBinary(text);	
 	var metadata = prepareMetadata(binaryText, "txt");
 	var unifiedData = processData(metadata, binaryText);
-	var positions = generateRandomPermutation(unifiedData.length, imageData.width * imageData.height, password);
+	var positions = generateRandomPermutation(imageData.width * imageData.height, unifiedData.length, password);
 
 	hideBinaryIntoImage(unifiedData, imageData, positions);
 	setImageData(imageData);
@@ -24,23 +24,17 @@ function hideMessage() {
 function seekMessage() {
 	var password = $('#password-space-2')[0].value;
 	var canvas = $("#canvas2")[0];
-	var context = canvas.getContext('2d');
-	readImage($('#file-upload-2'), context);
+	// var context = canvas.getContext('2d');
+	// readImage($('#file-upload-2'), context);
 	var imageData = getImageData(canvas);
-
-	console.log("passou 1");
 
 	var pixelNumber = imageData.width * imageData.height;
 	var positions = generateRandomPermutation(pixelNumber, pixelNumber, password);
-
-	console.log("passou 2");
 
 	var data = extractSecretMessage(imageData, positions);
 	console.log(data);
 	var binary = data[0];
 	var extension = data[1];
-
-	console.log("passou 3");
 
 	var secretMessage = convertBinaryToText(binary);
 
@@ -60,7 +54,7 @@ function preTest() {
 	setTimeout(test(), 1000);
 }
 
-function test() {
+function testHideAndSeek() {
 	var password = 'senha'
 	var text = 'ola mundo'
 	var canvas = $("#canvas1")[0];
@@ -71,15 +65,20 @@ function test() {
 	var binaryText = convertTextToBinary(text);	
 	var metadata = prepareMetadata(binaryText, "txt");
 	var unifiedData = processData(metadata, binaryText);
-	var positions = generateRandomPermutation(unifiedData.length, imageData.width * imageData.height, password);
+	var pixelNumber = imageData.width * imageData.height;
+	var positions = generateRandomPermutation(pixelNumber, unifiedData.length, password);
 	//
 	hideBinaryIntoImage(unifiedData, imageData, positions);
 
-	var pixelNumber = imageData.width * imageData.height;
+	
+	// console.log('pixelNumber>>'+pixelNumber);
+	// console.log('posAntes>>'+positions[0]+','+positions[1]+','+positions[2]+','+positions[3]);
 	positions = generateRandomPermutation(pixelNumber, pixelNumber, password);
+	// console.log('posDepois>>'+positions[0]+','+positions[1]+','+positions[2]+','+positions[3]);
 	var data = extractSecretMessage(imageData, positions);
 	var binary = data[0];
 	var extension = data[1];
+	console.log('binaryLength>>'+binary.length);
 	console.log('ext>>'+extension);
 
 	var secretMessage = convertBinaryToText(binary);

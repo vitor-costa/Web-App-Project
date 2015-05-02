@@ -92,6 +92,12 @@ function loadCanvas1(element) {
 	readImage(element, context);
 }
 
+function loadCanvas2(element) {
+	var canvas = $("#canvas2")[0];
+	var context = canvas.getContext("2d");
+	readImageWithoutResize(element, context);
+}
+
 function readImageWithoutResize(element, context) {
   if ( element.files && element.files[0] ) {
       var FR= new FileReader();
@@ -124,7 +130,7 @@ function generateRandomPermutation(totalNumberOfElements, numberOfPermutations, 
 	for(var i = 0; i < numberOfPermutations; i++) {
 		var aux = imageArray[i];
 		// var generatedNumber = i + random.nextInt(Integer.MAX_VALUE) % ((totalNumberOfElements) - i);
-		var generatedNumber = 1 + getRandomArbitrary(0, Number.MAX_VALUE) % ((totalNumberOfElements) - i);
+		var generatedNumber = i + getRandomArbitrary(0, Number.MAX_VALUE) % ((totalNumberOfElements) - i);
 		imageArray[i] = imageArray[generatedNumber];
 		imageArray[generatedNumber] = aux;
 	}
@@ -163,19 +169,19 @@ function extractSecretMessage(imageBuffer, positions) {
 	// extract data binary
 	var dataBinary = "";
 	for(var i = binaryIndex; i < binaryIndex + length; i++) {
-		for(var j = 0; j < 8; j++) {
-			x = positions[i] % width;
-			y = (positions[i] - x) / width;
+		// for(var j = 0; j < 8; j++) {
+		x = positions[i] % width;
+		y = (positions[i] - x) / width;
 
-			var pixel = getPixel(imageBuffer, x, y);
-			var blue = pixel[2];
-			// if value of pixel blue component is even
-			if(blue % 2 == 0) {
-				dataBinary += "0";
-			} else { // if value of pixel blue component is odd
-				dataBinary += "1";
-			}
+		var pixel = getPixel(imageBuffer, x, y);
+		var blue = pixel[2];
+		// if value of pixel blue component is even
+		if(blue % 2 == 0) {
+			dataBinary += "0";
+		} else { // if value of pixel blue component is odd
+			dataBinary += "1";
 		}
+		// }
 	}
 	console.log("passou aqui");
 
@@ -186,10 +192,10 @@ function extractNextMetadata(terminator, imageBuffer, positions, binaryIndex) {
 	var metadata = "";
 	var oneByte = "";
 	var i = binaryIndex;
-	while(oneByte != terminator && i<40) {
+	while(oneByte != terminator && i<400) {
 		if(oneByte != "") {
 			metadata += String.fromCharCode(parseInt(oneByte, 2));
-			console.log(">>" + metadata);
+			console.log("metadata>>" + metadata);
 		}
 		oneByte = "";
 		for(var j = 0; j < 8; j++) {
