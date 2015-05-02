@@ -11,7 +11,7 @@ function convertBinaryToText(binary) {
 	var text = "";
 
 	for(var i = 0; i < byteNumber; i++) {
-		var oneByte = binary.substr(i * 8, (i * 8) + 7);
+		var oneByte = binary.substr(i * 8, 8);
 		text += String.fromCharCode(parseInt(oneByte, 2));
 	}
 
@@ -49,7 +49,9 @@ function hideBinaryIntoImage(binary, imageBuffer, positions) {
 			// if bit is 1 (odd)
 			if(binary[i] == "1") {
 				// change parity
-				setPixel(imageBuffer, x, y, pixel[0], pixel[1], blue++, pixel[3]);
+				blue++;
+				setPixel(imageBuffer, x, y, pixel[0], pixel[1], blue, pixel[3]);
+				console.log('>'+blue+'-'+getPixel(imageBuffer,x,y)[2]+'<');
 			}
 			// else, OK! (don't change parity)
 		} else { // if value of pixel blue component is odd
@@ -63,6 +65,7 @@ function hideBinaryIntoImage(binary, imageBuffer, positions) {
 					blue++;
 				}
 				setPixel(imageBuffer, x, y, pixel[0], pixel[1], blue, pixel[3]);
+				// console.log('>'+blue+'-'+getPixel(imageBuffer,x,y)[2]+'<');
 			}
 			// else, OK!
 		}
@@ -81,6 +84,12 @@ function readImage(element, context) {
       };       
       FR.readAsDataURL( element.files[0] );
   }
+}
+
+function loadCanvas1(element) {
+	var canvas = $("#canvas1")[0];
+	var context = canvas.getContext("2d");
+	readImage(element, context);
 }
 
 function readImageWithoutResize(element, context) {

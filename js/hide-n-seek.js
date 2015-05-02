@@ -8,19 +8,15 @@ function hideMessage() {
 	readImage($("#fileUpload")[0], context);
 	var imageData = getImageData(canvas); 
 
-	setTimeout(function() {
-		var binaryText = convertTextToBinary(text);	
-		var metadata = prepareMetadata(binaryText, "txt");
-		var unifiedData = processData(metadata, binaryText);
-		var positions = generateRandomPermutation(unifiedData.length, imageData.width * imageData.height, password);
+	var binaryText = convertTextToBinary(text);	
+	var metadata = prepareMetadata(binaryText, "txt");
+	var unifiedData = processData(metadata, binaryText);
+	var positions = generateRandomPermutation(unifiedData.length, imageData.width * imageData.height, password);
 
-		hideBinaryIntoImage(unifiedData, imageData, positions);
-		setImageData(imageData);
+	hideBinaryIntoImage(unifiedData, imageData, positions);
+	setImageData(imageData);
 
-		setTimeout(function() {
-			window.open(canvas.toDataURL('image/png'));	
-		}, 1000);
-	},1000);
+	// window.open(canvas.toDataURL('image/png'));	
 
 	
 }
@@ -32,27 +28,23 @@ function seekMessage() {
 	readImage($('#file-upload-2'), context);
 	var imageData = getImageData(canvas);
 
-	setTimeout(function() {
+	console.log("passou 1");
 
-		console.log("passou 1");
+	var pixelNumber = imageData.width * imageData.height;
+	var positions = generateRandomPermutation(pixelNumber, pixelNumber, password);
 
-		var pixelNumber = imageData.width * imageData.height;
-		var positions = generateRandomPermutation(pixelNumber, pixelNumber, password);
+	console.log("passou 2");
 
-		console.log("passou 2");
+	var data = extractSecretMessage(imageData, positions);
+	console.log(data);
+	var binary = data[0];
+	var extension = data[1];
 
-		var data = extractSecretMessage(imageData, positions);
-		console.log(data);
-		var binary = data[0];
-		var extension = data[1];
+	console.log("passou 3");
 
-		console.log("passou 3");
+	var secretMessage = convertBinaryToText(binary);
 
-		var secretMessage = convertBinaryToText(binary);
-
-		window.alert(secretMessage);
-
-	},1000);
+	window.alert(secretMessage);
 
 	
 }
@@ -73,8 +65,8 @@ function test() {
 	var text = 'ola mundo'
 	var canvas = $("#canvas1")[0];
 	var context = canvas.getContext("2d");
-	readImage($("#fileUpload")[0], context);
-	var imageData = getImageData("#canvas1"); 
+	// readImage($("#fileUpload")[0], context);
+	var imageData = getImageData(canvas); 
 
 	var binaryText = convertTextToBinary(text);	
 	var metadata = prepareMetadata(binaryText, "txt");
@@ -88,9 +80,17 @@ function test() {
 	var data = extractSecretMessage(imageData, positions);
 	var binary = data[0];
 	var extension = data[1];
+	console.log('ext>>'+extension);
 
 	var secretMessage = convertBinaryToText(binary);
 
 	window.alert(secretMessage);
 
+}
+
+function testStringConversion() {
+	str = 'teste de string';
+	binary = convertTextToBinary(str);
+	newStr = convertBinaryToText(binary);
+	return str == newStr;
 }

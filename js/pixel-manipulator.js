@@ -1,21 +1,20 @@
 function getImageData(canvas) {
-	element = $(canvas).get(0);
 	// element = document.getElementById("canvas1");
-  c = element.getContext("2d");
+  c = canvas.getContext("2d");
 
   // read the width and height of the canvas
-  width = element.width;
-  height = element.height;
+  width = canvas.width;
+  height = canvas.height;
 
   // create a new batch of pixels with the same
   // dimensions as the image:
-  imageData = c.createImageData(width, height);
+  imageData = c.getImageData(0, 0, width, height);
 
   return imageData;
 }
 
 function setPixel(imageData, x, y, r, g, b, a) {
-    index = (x + y * imageData.width) * 4;
+    index = (x + (y * imageData.width)) * 4;
     imageData.data[index+0] = r;
     imageData.data[index+1] = g;
     imageData.data[index+2] = b;
@@ -23,7 +22,7 @@ function setPixel(imageData, x, y, r, g, b, a) {
 }
 
 function getPixel(imageData, x, y) {
-    index = (x + y * imageData.width) * 4;
+    index = (x + (y * imageData.width)) * 4;
     var r = imageData.data[index+0];
     var g = imageData.data[index+1];
     var b = imageData.data[index+2];
