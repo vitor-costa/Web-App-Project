@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <!-- <html manifest='/cache.manifest'> -->
 <html>
+	<head>
+		<!-- <link rel="stylesheet" type="text/css" href="bower_components/gaia-fonts/style.css"></link> -->
+		<!-- <link rel="stylesheet" type="text/css" href="bower_components/gaia-icons/gaia-icons.css"></link> -->
+
+		<!-- // <script src="bower_components/gaia-icons/gaia-icons.js"></script> -->
+		<!-- // <script src="bower_components/gaia-component/gaia-component.js"></script> -->
+		<!-- // <script src="bower_components/gaia-button/gaia-button.js"></script> -->
+		<link rel="stylesheet" type="text/css" href="stylesheets/site.css"></link>
+	</head>
 	<body>
-		<span>Password:</span>
-		<input type="password" id="password-space" name="password" size="8" maxlength="20"/>
-		<span>Text:</span>
-		<input type="text" id="text-space" name="text"/>
-		<input type='file' id="fileUpload" onchange='loadCanvas1(this);'/>
-		<button id="conver-btn" onclick="hideMessage()">Hide message</button>
 
-		<canvas id="canvas1" width="200" height="200"></canvas>
+		<ul>
+		  <li><div class='button' onclick='showHome()'>Home</div></li>
+		  <li><div class='button' onclick='showHide()'>Hide Message</div></li>
+		  <li><div class='button' onclick='showSeek()'>Seek Message</div></li>
+		</ul>
 
-		<br>
+		<section id='hide-section'>
+			Esconder mensagem
+			<span>Password:</span>
+			<input type="password" id="password-space" name="password" size="8" maxlength="20"/>
+			<span>Text:</span>
+			<input type="text" id="text-space" name="text"/>
+			<input type='file' id="fileUpload" onchange='loadCanvas1(this);'/>
+			<button id="conver-btn" onclick="hideMessage()">Hide message</button>
 
-		<span>Password:</span>
-		<input type="password" id="password-space-2" name="password" size="8" maxlength="20"/>
-		<canvas id="canvas2" width="200" height="200"></canvas>
-		<input type='file' id="file-upload-2" onchange='loadCanvas2(this);'/>
-		<button id="conver-btn" onclick="seekMessage()">Seek message</button>
+			<canvas id="canvas1" width="200" height="200"></canvas>
+		</section>
 
-		<br>
-		<button id="install-btn">Install app</button>
+		<section id='seek-section'>
+			Recuperar mensagem
+			<span>Password:</span>
+			<input type="password" id="password-space-2" name="password" size="8" maxlength="20"/>
+			<canvas id="canvas2" width="200" height="200"></canvas>
+			<input type='file' id="file-upload-2" onchange='loadCanvas2(this);'/>
+			<button id="conver-btn" onclick="seekMessage()">Seek message</button>
+		</section>
+
+		<section id='home-section'>
+			<button id="install-btn">Install app</button>
+		</section>
 
 		<script src="js/jquery-1.11.2.min.js"></script>
 		<script src="js/seedrandom.js"></script>

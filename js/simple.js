@@ -2,6 +2,24 @@ function hello() {
 	window.alert("Hello World!");
 }
 
+function showHome() {
+  $('#home-section').show();
+  $('#hide-section').hide();
+  $('#seek-section').hide();
+}
+
+function showHide() {
+  $('#home-section').hide();
+  $('#hide-section').show();
+  $('#seek-section').hide();
+}
+
+function showSeek() {
+  $('#home-section').hide();
+  $('#hide-section').hide();
+  $('#seek-section').show();
+}
+
 var manifest_url = location.href + 'manifest.webapp';
 
 function install(ev) {
