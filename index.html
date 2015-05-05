@@ -9,39 +9,58 @@
 		<!-- // <script src="bower_components/gaia-component/gaia-component.js"></script> -->
 		<!-- // <script src="bower_components/gaia-button/gaia-button.js"></script> -->
 		<link rel="stylesheet" type="text/css" href="stylesheets/site.css"></link>
+		<link rel="stylesheet" href="stylesheets/jquery.sidr.light.css">
 	</head>
 	<body>
 
-		<ul>
-		  <li><div class='button' onclick='showHome()'>Home</div></li>
-		  <li><div class='button' onclick='showHide()'>Hide Message</div></li>
-		  <li><div class='button' onclick='showSeek()'>Seek Message</div></li>
-		</ul>
+		<a id="simple-menu" href="#sidr"><img src="images/icon-menu.svg" alt=""></a>
+ 
+		<div id="sidr">
+		  <!-- Your content -->
+		  <ul>
+		    <li><div class='menu-opt' onclick='showHome()'>Home</div></li>
+		    <li><div class='menu-opt' onclick='showHide()'>Hide Message</div></li>
+		    <li><div class='menu-opt' onclick='showSeek()'>Seek Message</div></li>
+		  </ul>
+		</div>		
 
-		<section id='hide-section'>
-			Esconder mensagem
-			<span>Password:</span>
-			<input type="password" id="password-space" name="password" size="8" maxlength="20"/>
-			<span>Text:</span>
-			<input type="text" id="text-space" name="text"/>
-			<input type='file' id="fileUpload" onchange='loadCanvas1(this);'/>
-			<button id="conver-btn" onclick="hideMessage()">Hide message</button>
+		<div>
+			<div class='centralized wrapper'>
+				<section id='hide-section'>
+					Esconder mensagem
+					<span>Password:</span>
+					<input type="password" id="password-space" name="password" size="8" maxlength="20"/>
+					<span>Text:</span>
+					<input type="text" id="text-space" name="text"/>
+					<input type='file' id="fileUpload" onchange='loadCanvas1(this);'/>
+					<button id="conver-btn" onclick="hideMessage()">Hide message</button>
 
-			<canvas id="canvas1" width="200" height="200"></canvas>
-		</section>
+					<canvas id="canvas1" width="200" height="200"></canvas>
+				</section>
 
-		<section id='seek-section'>
-			Recuperar mensagem
-			<span>Password:</span>
-			<input type="password" id="password-space-2" name="password" size="8" maxlength="20"/>
-			<canvas id="canvas2" width="200" height="200"></canvas>
-			<input type='file' id="file-upload-2" onchange='loadCanvas2(this);'/>
-			<button id="conver-btn" onclick="seekMessage()">Seek message</button>
-		</section>
+				<section id='seek-section'>
+					Recuperar mensagem
+					<span>Password:</span>
+					<input type="password" id="password-space-2" name="password" size="8" maxlength="20"/>
+					<canvas id="canvas2" width="200" height="200"></canvas>
+					<input type='file' id="file-upload-2" onchange='loadCanvas2(this);'/>
+					<button id="conver-btn" onclick="seekMessage()">Seek message</button>
+				</section>
 
-		<section id='home-section'>
-			<button id="install-btn">Install app</button>
-		</section>
+				<section id='home-section'>
+					<div id='home-message'>
+						<span>
+							Welcome to HideN'Seek!<br>
+							You can hide your secrets inside images<br>
+							Select HIDE or SEEK in the menu<br>
+							This app uses a crypto-steganography technique, see more
+						</span>
+						<a href="http://vitor-costa.github.io">here</a>
+					</div>
+					<div id="install-btn" class='centralized button install-btn'>Install app</div>
+				</section>
+			</div>
+		</div>
 
 		<script src="js/jquery-1.11.2.min.js"></script>
 		<script src="js/seedrandom.js"></script>
@@ -50,5 +69,6 @@
 		<script src="js/steganography.js"></script>
 		<script src="js/hide-n-seek.js"></script>
 		<script src="js/test/test.js"></script>
+		<script src="js/jquery.sidr.min.js"></script>
 	</body>
 </html>

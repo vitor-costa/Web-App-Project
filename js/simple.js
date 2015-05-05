@@ -20,6 +20,10 @@ function showSeek() {
   $('#seek-section').show();
 }
 
+$(document).ready(function() {
+  $('#simple-menu').sidr();
+});
+
 var manifest_url = location.href + 'manifest.webapp';
 
 function install(ev) {

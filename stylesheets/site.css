@@ -1,25 +1,24 @@
+@font-face {
+font-family: FiraSans-Regular;
+src: url("../fonts/FiraSans-Regular.otf") format("opentype");
+}
+body {
+    color: #686868;
+    font-family: FiraSans-Regular;
+}
 #hide-section {
 	display: none;
 }
-
 #seek-section {
 	display: none;
 }
-
 ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
 }
-
-li {
-    float: left;
-}
-
 .button {
     display: block;
     width: 200px;
+    min-height: 30px;
     font-weight: bold;
     color: #FFFFFF;
     background-color: #98bf21;
@@ -27,8 +26,45 @@ li {
     padding: 4px;
     text-decoration: none;
     text-transform: uppercase;
+    line-height: 30px;
 }
-
 .button:hover {
     background-color: #7A991A;
+}
+.install-btn {
+    margin-top: 50px;
+}
+.centralized {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+.wrapper {
+    max-width: 360px;
+}
+.menu-wrapper {
+    background-color: #98bf21;
+}
+#home-message {
+    margin: 40px 0 40px 0;
+}
+#simple-menu {
+    border: 3px;
+    border-style: solid;
+    border-color: #DCDCDC;
+    width: 25px;
+    height: 25px;
+    padding-left: 7px;
+    padding-top: 2px;
+    display: block;
+    background-color: #E8E8E8;
+}
+#simple-menu:hover {
+    background-color: #DCDCDC;
+}
+.menu-opt {
+    color: #686868;
+    font-family: FiraSans-Regular;
+    cursor: pointer;
+    padding-left: 10px;
 }
