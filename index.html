@@ -17,6 +17,7 @@
  
 		<div id="sidr">
 		  <!-- Your content -->
+
 		  <ul>
 		    <li><div class='menu-opt' onclick='showHome()'>Home</div></li>
 		    <li><div class='menu-opt' onclick='showHide()'>Hide Message</div></li>
@@ -26,22 +27,34 @@
 
 		<div>
 			<div class='centralized wrapper'>
-				<section id='hide-section'>
-					Esconder mensagem
-					<span>Password:</span>
-					<input type="password" id="password-space" name="password" size="8" maxlength="20"/>
-					<span>Text:</span>
-					<input type="text" id="text-space" name="text"/>
-					<input type='file' id="fileUpload" onchange='loadCanvas1(this);'/>
-					<button id="conver-btn" onclick="hideMessage()">Hide message</button>
+				<!-- <a id="simple-menu" href="#sidr"><img src="images/icon-menu.svg" alt=""></a> -->
+				<section id='hide-section' class='hide-it'>
+					<div>
+						<div class='info centralized' onclick='$("#info-hide").toggle()'>i</div>
+						<span id='info-hide' class='hide-it'>
+							Hide your secrets here!<br>
+							Choose a password to protect your secret. The password strength is essencial to avoid information leeking, so choose wisely!<br>
+							Then, write your secret in the second textfield<br>
+							Choose an image from your device to receive the secret data. The secret will be encoded in the image pixels<br>
+							To HIDE the secret message, press 'Hide Message' after the input of password, secret message and the image.
+						</span>
+					</div>
+					<input type="password" id="password-space" class='password' name="password" size="8" maxlength="30" placeholder='Password here...'/>
+					<textarea type="text" id="text-space" class='secret-msg' name="text" placeholder='Write your secret here!' cols='30' rows='30'></textarea>
+					<canvas id="canvas1" class='centralized canvas' width="200" height="200"></canvas>
+					<div class='centralized button file-loader-wrapper'>
+						<input type='file' id="fileUpload" class='file-loader' onchange='loadCanvas1(this);'/>
+						<div class='file-loader-stylist'>Choose the Image</div>
+					</div>
+					<div id="conver-btn" class='centralized button' onclick="hideMessage()">Hide message</div>
 
-					<canvas id="canvas1" width="200" height="200"></canvas>
+					
 				</section>
 
-				<section id='seek-section'>
+				<section id='seek-section' class='hide-it'>
 					Recuperar mensagem
 					<span>Password:</span>
-					<input type="password" id="password-space-2" name="password" size="8" maxlength="20"/>
+					<input type="password" id="password-space-2" class='password' name="password" size="8" maxlength="20"/>
 					<canvas id="canvas2" width="200" height="200"></canvas>
 					<input type='file' id="file-upload-2" onchange='loadCanvas2(this);'/>
 					<button id="conver-btn" onclick="seekMessage()">Seek message</button>
@@ -64,11 +77,11 @@
 
 		<script src="js/jquery-1.11.2.min.js"></script>
 		<script src="js/seedrandom.js"></script>
-		<script src="js/simple.js"></script>
 		<script src="js/pixel-manipulator.js"></script>
 		<script src="js/steganography.js"></script>
 		<script src="js/hide-n-seek.js"></script>
 		<script src="js/test/test.js"></script>
 		<script src="js/jquery.sidr.min.js"></script>
+		<script src="js/simple.js"></script>
 	</body>
 </html>

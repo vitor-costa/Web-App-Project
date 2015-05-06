@@ -12,6 +12,12 @@ function showHide() {
   $('#home-section').hide();
   $('#hide-section').show();
   $('#seek-section').hide();
+
+  // Set image as default
+  setTimeout(function() {
+    var c = $('#canvas1')[0].getContext('2d');
+    loadNoImageCanvas(c);
+  }, 500);
 }
 
 function showSeek() {

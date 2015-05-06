@@ -110,6 +110,12 @@ function readImageWithoutResize(element, context) {
   }
 }
 
+function loadNoImageCanvas(context) {
+	var img = new Image();
+	img.src = 'images/no-image.png';
+	context.drawImage(img, 0, 0, img.width, img.height, 0, 0, 200, 200);
+}
+
 function generateRandomPermutation(totalNumberOfElements, numberOfPermutations, seed) {
 	var crypto = [];
 	// StringBuilder sb = new StringBuilder();
