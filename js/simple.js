@@ -6,12 +6,14 @@ function showHome() {
   $('#home-section').show();
   $('#hide-section').hide();
   $('#seek-section').hide();
+  toggleMenu();
 }
 
 function showHide() {
   $('#home-section').hide();
   $('#hide-section').show();
   $('#seek-section').hide();
+  toggleMenu();
 
   // Set image as default
   setTimeout(function() {
@@ -20,14 +22,20 @@ function showHide() {
   }, 500);
 }
 
+function toggleMenu() {
+  var e = $('#sidr');
+  e.toggle();
+}
+
 function showSeek() {
   $('#home-section').hide();
   $('#hide-section').hide();
   $('#seek-section').show();
+  toggleMenu();
 }
 
 $(document).ready(function() {
-  $('#simple-menu').sidr();
+  // $('#simple-menu').sidr();
 });
 
 var manifest_url = location.href + 'manifest.webapp';

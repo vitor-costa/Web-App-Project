@@ -112,13 +112,23 @@ ul {
     border-style: solid;
     border-radius: 5px;
 }
-@media screen and (max-width: 400px) {
+body .out-menu .fix-menu {
+    display: none;
+    left: 0;
+}
+@media only screen and (min-width: 800px) {
+    .wrapper {
+        width: 70%
+    }
+    @viewport {
+        width: 500px;
+    }
+}
+@media only screen and (min-width: 321px) and (max-width: 799px) {
     .wrapper {
         width: 90%
     }
-}
-@media screen and (max-width: 800px) {
-    .wrapper {
-        width: 70%
+    @viewport {
+        width: 300px;
     }
 }

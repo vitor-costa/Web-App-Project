@@ -13,17 +13,20 @@
 	</head>
 	<body>
 
-		<a id="simple-menu" href="#sidr"><img src="images/icon-menu.svg" alt=""></a>
- 
-		<div id="sidr">
-		  <!-- Your content -->
+		<!-- <a id="simple-menu" href="" onclick=""><img src="images/icon-menu.svg" alt=""></a> -->
+		<img src="images/icon-menu.svg" alt="" onclick="toggleMenu()">
 
+ 	
+ 		<div class="out-menu">
+		<div id="sidr" class="sidr left fix-menu">
+		  <!-- Your content -->
 		  <ul>
 		    <li><div class='menu-opt' onclick='showHome()'>Home</div></li>
 		    <li><div class='menu-opt' onclick='showHide()'>Hide Message</div></li>
 		    <li><div class='menu-opt' onclick='showSeek()'>Seek Message</div></li>
 		  </ul>
 		</div>		
+		</div>
 
 		<div>
 			<div class='centralized wrapper'>
