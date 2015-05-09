@@ -39,7 +39,7 @@
 					<textarea type="text" id="text-space" class='secret-msg' name="text" placeholder='Write your secret here!' cols='30' rows='30'></textarea>
 					<canvas id="canvas1" class='centralized canvas' width="200" height="200"></canvas>
 					<div class='centralized button file-loader-wrapper'>
-						<input type='file' id="fileUpload" class='file-loader' onchange='loadCanvas1(this);'/>
+						<input type='file' id="fileUpload" class='file-loader' onchange='loadCanvas1(this)'/>
 						<div class='file-loader-stylist'>Choose the Image</div>
 					</div>
 					<div id="conver-btn" class='centralized button' onclick="hideMessage()">Hide message</div>
@@ -48,12 +48,23 @@
 				</section>
 
 				<section id='seek-section' class='hide-it'>
-					Recuperar mensagem
-					<span>Password:</span>
-					<input type="password" id="password-space-2" class='password' name="password" size="8" maxlength="20"/>
-					<canvas id="canvas2" width="200" height="200"></canvas>
-					<input type='file' id="file-upload-2" onchange='loadCanvas2(this);'/>
-					<button id="conver-btn" onclick="seekMessage()">Seek message</button>
+					<div>
+						<div class='info centralized' onclick='$("#info-seek").toggle()'>?</div>
+						<span id='info-seek' class='hide-it'>
+							Recover your secrets here!<br>
+							Put the same password you chose to hide the secret<br>
+							Then, choose the image resulted from the hide step from your device. The secret will be extracted from it.<br>
+							To SEEK the secret message, press 'Seek Message' after the input of password and the image.<br>
+							Shhhh... Look behind you before clicking that button!
+						</span>
+					</div>
+					<input type="password" id="password-space-2" class='password' name="password" size="8" maxlength="20" placeholder='Password here...'/>
+					<canvas id="canvas2" class='centralized canvas' width="200" height="200"></canvas>
+					<div class='centralized button file-loader-wrapper'>
+						<input type='file' id="fileUpload-2" class='file-loader' onchange='loadCanvas2(this)'/>
+						<div class='file-loader-stylist'>Choose the Image</div>
+					</div>
+					<div id="conver-btn" class='centralized button' onclick="seekMessage()">Seek message</div>
 				</section>
 
 				<section id='home-section'>
