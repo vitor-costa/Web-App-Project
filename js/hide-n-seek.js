@@ -13,6 +13,8 @@ function hideMessage() {
 
 	hideBinaryIntoImage(unifiedData, imageData, positions);
 	setImageData(imageData);	
+
+	$("#download-btn").removeClass('disabled-btn');
 }
 
 function seekMessage() {
