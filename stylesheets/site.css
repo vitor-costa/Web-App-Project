@@ -47,20 +47,6 @@ ul {
 #home-message {
     margin: 40px 0 40px 0;
 }
-#simple-menu {
-    border: 3px;
-    border-style: solid;
-    border-color: #DCDCDC;
-    width: 25px;
-    height: 25px;
-    padding-left: 7px;
-    padding-top: 2px;
-    display: block;
-    background-color: #E8E8E8;
-}
-#simple-menu:hover {
-    background-color: #DCDCDC;
-}
 .menu-opt {
     color: #686868;
     font-family: FiraSans-Regular;
@@ -116,15 +102,18 @@ body .out-menu .fix-menu {
     display: none;
     left: 0;
 }
+@viewport{
+    zoom: 1.0;
+}
 @media only screen and (min-width: 800px) {
     .wrapper {
-        width: 70%
+        width: 70%;
     }
     @viewport {
         width: 500px;
     }
 }
-@media only screen and (min-width: 321px) and (max-width: 799px) {
+@media only screen and  (max-width: 799px) {
     .wrapper {
         width: 90%
     }
