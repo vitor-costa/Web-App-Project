@@ -116,6 +116,16 @@ function loadNoImageCanvas(context) {
 	context.drawImage(img, 0, 0, img.width, img.height, 0, 0, 200, 200);
 }
 
+function downloadImage(canvas) {
+	imgUrl = canvas.toDataURL();
+	var btn = $("#download-btn")
+    .attr("href", imgUrl)
+    .attr("download", "img.png")
+    .appendTo("body");
+
+	btn[0].click();
+}
+
 function generateRandomPermutation(totalNumberOfElements, numberOfPermutations, seed) {
 	var crypto = [];
 	// StringBuilder sb = new StringBuilder();
