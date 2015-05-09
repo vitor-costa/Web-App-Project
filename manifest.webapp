@@ -1,20 +1,14 @@
 {
   "version": "0.1",
-  "name": "Open Web App Project",
+  "name": "HideNSeek",
   "description": "Steganography app",
-  "launch_path": "index.html",
+  "launch_path": "/crypto-stego-app/index.html",
   "icons": {
-    "512": "/images/app-icon-large.png",
-    "128": "/images/app-icon.png"
+    "512": "/crypto-stego-app/images/app-icon-large.png",
+    "128": "/crypto-stego-app/images/app-icon.png"
   },
-  "developers": {
-    "developer1": {
-      "name": "Vitor Costa",
-      "url": ""
-    },
-    "developer2": {
-      "name": "Danilo Vettorazi",
-      "url": ""
-    }
+  "developer": {
+    "name": "VitorCosta&DaniloVettorazi",
+    "url": ""
   }
 }
