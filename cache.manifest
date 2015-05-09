@@ -1,5 +1,16 @@
 CACHE MANIFEST
-# rev 0.0.2
+# rev 1.0
 js/simple.js
 js/jquery-1.11.2.min.js
+js/jquery.sidr.min.js
 js/pixel-manipulator.js
+js/seedrandom.js
+js/steganography.js
+js/hide-n-seek.js
+images/icon-menu.svg
+images/no-image.png
+images/app-icon.png
+images/app-icon-large.png
+stylesheets/jquery.sidr.light.css
+stylesheets/site.css
+fonts/FiraSans-Regular.otf

@@ -3,6 +3,10 @@
   "name": "Open Web App Project",
   "description": "Steganography app",
   "launch_path": "index.html",
+  "icons": {
+    "512": "/images/app-icon-large.png",
+    "128": "/images/app-icon.png"
+  },
   "developers": {
     "developer1": {
       "name": "Vitor Costa",
