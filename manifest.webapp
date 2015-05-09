@@ -10,5 +10,6 @@
   "developer": {
     "name": "VitorCosta&DaniloVettorazi",
     "url": "https://github.com/vitor-costa"
-  }
+  },
+  "appcache_path": "/crypto-stego-app/cache.manifest"
 }
