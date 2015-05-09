@@ -120,8 +120,7 @@ function downloadImage(canvas) {
 	imgUrl = canvas.toDataURL();
 	var btn = $("#download-btn")
     .attr("href", imgUrl)
-    .attr("download", "img.png")
-    .appendTo("body");
+    .attr("download", "img.png");
 
 	btn[0].click();
 }
