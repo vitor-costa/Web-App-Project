@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest='/crypto-stego-app/cache.manifest'>
+<html manifest='/crypto-stego-app/cache.appcache'>
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="stylesheets/site.css"></link>
@@ -9,7 +9,7 @@
 	<body>
 
 		<a id="simple-menu" href="#sidr"><img src="images/icon-menu.svg" alt=""></a>
- 	
+
  		<div class="out-menu">
 		<div id="sidr" class="sidr">
 		  <!-- Your content -->
@@ -42,6 +42,9 @@
 						<input type='file' id="fileUpload" class='file-loader' onchange='loadCanvas1(this)'/>
 						<div class='file-loader-stylist'>Choose the Image</div>
 					</div>
+					<div class="loading-icon">
+						<img src="images/loading_icon.gif">
+			 		</div>
 					<div id="conver-btn" class='centralized button' onclick="hideMessage()">Hide message</div>
 					<a id="download-btn" class='centralized button disabled-btn'>Download Image</a>
 				</section>
@@ -63,6 +66,9 @@
 						<input type='file' id="fileUpload-2" class='file-loader' onchange='loadCanvas2(this)'/>
 						<div class='file-loader-stylist'>Choose the Image</div>
 					</div>
+					<div class="loading-icon">
+						<img src="images/loading_icon.gif">
+			 		</div>
 					<div id="conver-btn" class='centralized button' onclick="seekMessage()">Seek message</div>
 				</section>
 

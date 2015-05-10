@@ -1,5 +1,6 @@
 var globalCanvas;
 function hideMessage() {
+	toggleLoadingIcon();
 	var password = $('#password-space')[0].value;
 	var text = $('#text-space')[0].value;
 	var canvas = $("#canvas1")[0];
@@ -17,11 +18,13 @@ function hideMessage() {
 	setTimeout(function() {
 		$("#download-btn").removeClass('disabled-btn');
 		downloadImage(canvas);
+		toggleLoadingIcon();
 	},3000);
 	
 }
 
 function seekMessage() {
+	toggleLoadingIcon();
 	var password = $('#password-space-2')[0].value;
 	var canvas = $("#canvas2")[0];
 	var imageData = getImageData(canvas);
@@ -36,9 +39,13 @@ function seekMessage() {
 
 	var secretMessage = convertBinaryToText(binary);
 
-	window.alert(secretMessage);
+	toggleLoadingIcon();
 
-	
+	window.alert(secretMessage);
+}
+
+function toggleLoadingIcon() {
+	$('.loading-icon').toggle();
 }
 
 function processData(metadata, data) {

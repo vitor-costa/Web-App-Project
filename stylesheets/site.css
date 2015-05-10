@@ -104,10 +104,13 @@ ul {
     border-style: solid;
     border-radius: 5px;
 }
-body .out-menu .fix-menu {
+.loading-icon {
+    margin: 0 auto;
+    width: 50px;
     display: none;
-    left: 0;
 }
+
+
 @viewport{
     zoom: 1.0;
 }
